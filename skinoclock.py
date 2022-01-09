@@ -19,11 +19,11 @@ st.header("""Skincare Products Recommendation Engine""")
 st.write("WIH3001 Data Science Project")
 st.write("Prepared by Wan Woei Chyi (17205866/1)")
 
-image = Image.open('/Users/wanwoeichyi/Desktop/WIH3001 DS fyp/skincare.jpeg')
+image = Image.open('skincare.jpeg')
 
 st.image(image)
 
-cleaned_data = pd.read_csv("/Users/wanwoeichyi/Desktop/WIH3001 DS fyp/Cleaned_skindataall.csv")
+cleaned_data = pd.read_csv("https://raw.githubusercontent.com/broccobroccolis/skinoclock/main/Cleaned_skindataall.csv")
 df = cleaned_data.copy()
 
 category = st.sidebar.selectbox("Select product category: ",("Cleanser","Toner","Treatment","Moisturizer","Face Mask"))
@@ -32,7 +32,6 @@ category = st.sidebar.selectbox("Select product category: ",("Cleanser","Toner",
 #skin_type = st.sidebar.selectbox("Select skin type: ", ("Dry","Normal","Combination","Oily"), index=2)
 #eye_color = st.sidebar.selectbox("Select eye color: ", ("Black","Brown","Hazel","Blue","Gray","Green"), index=5)
 #hair_color = st.sidebar.selectbox("Select hair color: ", ("Black","Blonde","Brunette","Gray","Auburn","Red"),index=2)
-
 
 #Modelling recommenders
 data = df[['User_id', 'Product_id', 'Rating_Stars']]
