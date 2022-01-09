@@ -18,7 +18,7 @@ def app():
     st.subheader("""Welcome to your skincare products recommendation engine!""")
     st.caption("Now be patient... We need a little bit of time to give you our best...")
     
-    cleaned_data = pd.read_csv("https://raw.githubusercontent.com/broccobroccolis/skinoclock/main/Cleaned_skindataall.csv")
+    cleaned_data = pd.read_csv("/Users/wanwoeichyi/Desktop/WIH3001 DS fyp/Cleaned_skindataall.csv")
     df = cleaned_data.copy()
     
     category = st.selectbox("Select the product category you're looking for: ",("Cleanser","Toner","Treatment","Moisturizer","Face Mask"))
@@ -47,7 +47,14 @@ def app():
     tmp_transpose = tmp.transpose()
         
     user_id_input = int(st.text_input("Please enter your user ID at Sephora: ", 67))
-    st.write(get_predictions(user_id_input,category,tmp_transpose,df))
+    final_recommendations = get_predictions(user_id_input,category,tmp_transpose,df)
+    st.write(final_recommendations.head())
+#    for x in range(0,4):
+#        st.write("No.", x+1 , final_recommendations['Product'][x].name, " from ",final_recommendations['Brand'][x].name)
+#        st.caption("Price: ", final_recommendations['Price'][x])
+#        st.caption("Size in ml: ", final_recommendations['Size'][x])
+#        st.caption("Ingredients: ", final_recommendations['Ingredients'][x])
+#        st.caption("URL: ", final_recommendations['Product_Url'][x])
     
     st.write("")
     popularity_based_recommendation(df)
@@ -92,7 +99,9 @@ def get_predictions(user_id,category,tmp_transpose,df):
     
     st.success('Your recommendations have been successfully generated!')
     st.subheader('The top 5 products recommendation for you are: ')
-    return final_recommendations[final_recommendations.Category.str.contains(category)].head(5)
+    
+    final_recommendations = final_recommendations[final_recommendations.Category.str.contains(category)]
+    return final_recommendations
 
 
 def popularity_based_recommendation(data):
