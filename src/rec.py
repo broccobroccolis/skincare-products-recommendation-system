@@ -53,7 +53,7 @@ def app():
     
     except AttributeError:
         pass
-
+    
     st.write("")
     popularity_based_recommendation(df)
     
@@ -101,7 +101,6 @@ def get_predictions(user_id,category,tmp_transpose,df):
     st.subheader('The top 5 products recommendation for you are: ')
     
     final_recommendations = final_recommendations[final_recommendations.Category.str.contains(category)]
-    final_recommendations = final_recommendations.drop('Product_id')
 
     final_recommendations.rename(columns = {'Price':'Price (USD)'}, inplace = True)
     final_recommendations.rename(columns = {'Size':'Size (ml)'}, inplace = True)
@@ -119,7 +118,7 @@ def popularity_based_recommendation(data):
     pb_rec = top_products_of_all_time.merge(df_pb_rec,on='product_and_brand')
     pb_rec.drop_duplicates(subset=['Product_id'],inplace=True)
 
-    final_pb_rec = pb_rec[['Category','Product', 'Brand','Rating_Stars_x','Price','Size','Ingredients','Product_Url']]
+    final_pb_rec = pb_rec[['Product_id','Category','Product', 'Brand','Rating_Stars_x','Price','Size','Ingredients','Product_Url']]
     final_pb_rec.rename(columns = {'Rating_Stars_x':'Average Rating Stars'}, inplace = True)
     final_pb_rec.rename(columns = {'Price':'Price (USD)'}, inplace = True)
     final_pb_rec.rename(columns = {'Size':'Size (ml)'}, inplace = True)
