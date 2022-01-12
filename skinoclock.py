@@ -9,8 +9,6 @@ Created on Fri Jan  7 20:08:55 2022
 from PIL import Image
 import streamlit as st
 from src import homepage, about, rec, info, visualization
-import streamlit.components.v1 as components
-import hydralit_components as hc
 
 from multipage import MultiPage
 
