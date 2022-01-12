@@ -19,9 +19,9 @@ def app():
     
     vis_type = st.multiselect("Select the type of visualizations you would like to explore: ", ("Users' Features Distribution","Ingredients Word Cloud"))
     for x in range(0,len(vis_type)):
-        if x ==0:
+        if vis_type[x] == "Users' Features Distribution":
             featuresDistribution(df)
-        else:
+        elif vis_type[x] == "Ingredients Word Cloud":
             ingredientsWordCloud()
             
 def featuresDistribution(df):
