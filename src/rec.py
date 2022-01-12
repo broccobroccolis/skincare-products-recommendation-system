@@ -18,7 +18,7 @@ def app():
     st.subheader("""Welcome to your skincare products recommendation engine!""")
     st.caption("Now be patient... We need a little bit of time to give you our best...")
     
-    cleaned_data = pd.read_csv("/Users/wanwoeichyi/Desktop/WIH3001 DS fyp/Cleaned_skindataall.csv")
+    cleaned_data = pd.read_csv("https://raw.githubusercontent.com/broccobroccolis/skinoclock/main/Cleaned_skindataall.csv")
     df = cleaned_data.copy()
     
     category = st.selectbox("Select the product category you're looking for: ",("Cleanser","Toner","Treatment","Moisturizer","Face Mask"))
