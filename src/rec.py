@@ -47,15 +47,13 @@ def app():
     tmp_transpose = tmp.transpose()
         
     user_id_input = int(st.text_input("Please enter your user ID at Sephora: ", 67))
-    final_recommendations = get_predictions(user_id_input,category,tmp_transpose,df)
-    st.write(final_recommendations.head())
-#    for x in range(0,4):
-#        st.write("No.", x+1 , final_recommendations['Product'][x].name, " from ",final_recommendations['Brand'][x].name)
-#        st.caption("Price: ", final_recommendations['Price'][x])
-#        st.caption("Size in ml: ", final_recommendations['Size'][x])
-#        st.caption("Ingredients: ", final_recommendations['Ingredients'][x])
-#        st.caption("URL: ", final_recommendations['Product_Url'][x])
+    try:
+        final_recommendations = get_predictions(user_id_input,category,tmp_transpose,df)
+        st.write(final_recommendations.head())
     
+    except AttributeError:
+        pass
+
     st.write("")
     popularity_based_recommendation(df)
     
@@ -93,7 +91,9 @@ def get_predictions(user_id,category,tmp_transpose,df):
     except UnboundLocalError:
         st.warning("Sorry, we can't generate relevant recommendations because your User ID isn't in our database.")
         return None
-
+    except AttributeError:
+        st.warning("Sorry, we can't generate relevant recommendations because your User ID isn't in our database.")
+        return None
     recommended_product_ids_df = pd.DataFrame(recommended_product_ids, columns=['Product_id'])
     final_recommendations = recommended_product_ids_df.merge(df_products,on='Product_id')
     
@@ -101,6 +101,12 @@ def get_predictions(user_id,category,tmp_transpose,df):
     st.subheader('The top 5 products recommendation for you are: ')
     
     final_recommendations = final_recommendations[final_recommendations.Category.str.contains(category)]
+    final_recommendations = final_recommendations.drop('Product_id')
+
+    final_recommendations.rename(columns = {'Price':'Price (USD)'}, inplace = True)
+    final_recommendations.rename(columns = {'Size':'Size (ml)'}, inplace = True)
+    final_recommendations = final_recommendations.reset_index(drop=True)
+
     return final_recommendations
 
 
@@ -109,13 +115,24 @@ def popularity_based_recommendation(data):
     df_pb_rec["product_and_brand"] = df_pb_rec["Product"] + " from " + df_pb_rec["Brand"]
     top_products_of_all_time = pd.DataFrame(df_pb_rec.groupby('product_and_brand')['Rating_Stars'].mean()
                                             .sort_values(ascending=False))
-    st.subheader('The top and worst 10 products recommendation of all time: ')
+    
+    pb_rec = top_products_of_all_time.merge(df_pb_rec,on='product_and_brand')
+    pb_rec.drop_duplicates(subset=['Product_id'],inplace=True)
+
+    final_pb_rec = pb_rec[['Category','Product', 'Brand','Rating_Stars_x','Price','Size','Ingredients','Product_Url']]
+    final_pb_rec.rename(columns = {'Rating_Stars_x':'Average Rating Stars'}, inplace = True)
+    final_pb_rec.rename(columns = {'Price':'Price (USD)'}, inplace = True)
+    final_pb_rec.rename(columns = {'Size':'Size (ml)'}, inplace = True)
+
+    final_pb_rec.sort_values(by=['Average Rating Stars'], inplace=True, ascending=False)
+    final_pb_rec = final_pb_rec.reset_index(drop=True)
+
+    st.subheader('The top and worst N recommended products of all time: ')
     
     with st.expander("Click to see more"):
-        st.write('The top 10 products recommendation of all time: ')
-        st.write(top_products_of_all_time.head(10))
+        N = st.slider("Enter number N: ", min_value=1, max_value=int(len(pb_rec)/2), value=5)
+        st.write('The top ', N, 'recommended products of all time: ')
+        st.write(final_pb_rec.head(N))
 
-        worst_products_of_all_time = top_products_of_all_time.copy()
-        st.write('The worst 10 products recommendation of all time: ')
-        st.write(worst_products_of_all_time.iloc[::-1].head(10))
-
+        st.write('The worst ', N, ' recommended products of all time: ')
+        st.write(final_pb_rec.iloc[::-1].head(N))
