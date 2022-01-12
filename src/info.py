@@ -38,7 +38,7 @@ def app():
     st.write("🪞 Face Mask")
     st.caption("Face masks dive down deeper into the pores than regular daily cleansers. They can help draw out dirt, oil and impurities from below the skin's surface, giving you a more thorough cleansing session. Masks are great for body and mind as well as skin.")
     
-    image = Image.open('model.jpeg')
+    image = Image.open('img/model.jpeg')
     st.image(image)
         
     st.write("")
