@@ -31,16 +31,16 @@ def featuresDistribution(df):
     for x in range(0, len(features)):
         if features[x] == "Skin Tone":
             st.caption("Skin Tone: ")
-            st.image(Image.open('skintone_dis.png'),width=450)
+            st.image(Image.open('img/skintone_dis.png'),width=450)
         elif features[x] == "Skin Type":
             st.caption("Skin Type: ")
-            st.image(Image.open('skintype_dis.png'),width=450)
+            st.image(Image.open('img/skintype_dis.png'),width=450)
         elif features[x] == "Eye Color":
             st.caption("Eye Color: ")
-            st.image(Image.open('eyecolor_dis.png'),width=450)
+            st.image(Image.open('img/eyecolor_dis.png'),width=450)
         elif features[x] == "Hair Color":
             st.caption("Hair Color: ")
-            st.image(Image.open('haircolor_dis.png'),width=450)
+            st.image(Image.open('img/haircolor_dis.png'),width=450)
             
         if x == len(features)-1:
                 st.success("Above is/are the users' distribution visualization(s) of your selected feature(s).")
@@ -59,19 +59,19 @@ def ingredientsWordCloud():
         
         if category[x] == 'Cleanser':
             st.caption("Cleanser:")
-            st.image(Image.open('cleanser_wordcloud.png'),width=450)
+            st.image(Image.open('img/cleanser_wordcloud.png'),width=450)
         elif category[x] == 'Toner':
             st.caption("Toner:")
-            st.image(Image.open('toner_wordcloud.png'),width=450)
+            st.image(Image.open('img/toner_wordcloud.png'),width=450)
         elif category[x] == 'Treatment':
             st.caption("Treatment:")
-            st.image(Image.open('treatment_wordcloud.png'),width=450)
+            st.image(Image.open('img/treatment_wordcloud.png'),width=450)
         elif category[x] == 'Moisturizer':
             st.caption("Moisturizer:")
-            st.image(Image.open('moisturizer_wordcloud.png'),width=450)
+            st.image(Image.open('img/moisturizer_wordcloud.png'),width=450)
         elif category[x] == 'Face Mask':
             st.caption("Face Mask:")
-            st.image(Image.open('facemask_wordcloud.png'),width=450)
+            st.image(Image.open('img/facemask_wordcloud.png'),width=450)
         
         if x == len(category)-1:
                 st.success("Above is/are the Word Cloud visualization(s) of the ingredients distribution of your selected product category(s).")
