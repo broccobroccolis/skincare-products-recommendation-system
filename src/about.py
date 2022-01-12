@@ -32,7 +32,7 @@ def app():
     st.subheader("About Author ✍🏻  ")
     with st.container():
         col1, col2 = st.columns([1,2])
-        image = Image.open('DSC_8752.jpg')
+        image = Image.open('img/DSC_8752.jpg')
         col1.image(image, width=200)
         
         col2.write("Hello there! I am Wan Woei Chyi, a 3rd year Data Science student from University of Malaya, and definitely a skincare enthusiast! ")
