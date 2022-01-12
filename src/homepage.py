@@ -13,7 +13,7 @@ def app():
     st.header("""Skincare Products Recommendation Engine""")
     st.markdown("WIH3001 Data Science Project")
     st.markdown("Prepared by Wan Woei Chyi (17205866/1)")
-    image = Image.open('skincare.jpeg')
+    image = Image.open('img/skincare.jpeg')
     st.image(image)
     
     st.sidebar.caption("Navigate through the pages to explore more!")
