@@ -126,12 +126,12 @@ def popularity_based_recommendation(data):
     final_pb_rec.sort_values(by=['Average Rating Stars'], inplace=True, ascending=False)
     final_pb_rec = final_pb_rec.reset_index(drop=True)
 
-    st.subheader('The top and worst N recommended products of all time: ')
+    st.subheader('The top and worst N products recommended by users of all time: ')
     
     with st.expander("Click to see more"):
         N = st.slider("Enter number N: ", min_value=1, max_value=int(len(pb_rec)/2), value=5)
-        st.write('The top ', N, 'recommended products of all time: ')
+        st.write('The top ', N, ' products recommended by users of all time: ')
         st.write(final_pb_rec.head(N))
 
-        st.write('The worst ', N, ' recommended products of all time: ')
+        st.write('The worst ', N, ' products recommended by users of all time: ')
         st.write(final_pb_rec.iloc[::-1].head(N))
