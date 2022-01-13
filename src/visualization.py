@@ -22,59 +22,70 @@ def app():
         if vis_type[x] == "Users' Features Distribution":
             featuresDistribution(df)
         elif vis_type[x] == "Ingredients Word Cloud":
-            ingredientsWordCloud()
+            ingredientsWordCloud(df)
             
-def featuresDistribution(df):
+def featuresDistribution(data):
     st.subheader("Users' Features Distribution")
     features = st.multiselect("Select the features to see the users' distribution': ",("Skin Tone","Skin Type","Eye Color","Hair Color"))
     
     for x in range(0, len(features)):
         if features[x] == "Skin Tone":
             st.caption("Skin Tone: ")
-            st.image(Image.open('img/skintone_dis.png'),width=450)
+            stats = data.groupby('Skin_Tone')['Username'].count().sort_values(ascending=False)
         elif features[x] == "Skin Type":
             st.caption("Skin Type: ")
-            st.image(Image.open('img/skintype_dis.png'),width=450)
+            stats = data.groupby('Skin_Type')['Username'].count().sort_values(ascending=False)
         elif features[x] == "Eye Color":
             st.caption("Eye Color: ")
-            st.image(Image.open('img/eyecolor_dis.png'),width=450)
+            stats = data.groupby('Eye_Color')['Username'].count().sort_values(ascending=False)
         elif features[x] == "Hair Color":
             st.caption("Hair Color: ")
-            st.image(Image.open('img/haircolor_dis.png'),width=450)
-            
+            stats = data.groupby('Hair_Color')['Username'].count().sort_values(ascending=False)
+        
+        
+        fig, ax = plt.subplots(figsize=(12, 6))
+        fig = stats.plot.bar()
+        ax.set_xticklabels(ax.get_xticklabels(), rotation=360, ha='right')
+
+        st.pyplot(fig=fig.figure, figsize=30)
+        
         if x == len(features)-1:
                 st.success("Above is/are the users' distribution visualization(s) of your selected feature(s).")
-        
-    
-def ingredientsWordCloud():
-    #stopwords = set(STOPWORDS)
-    #stopwords.update(['read', 'more', 'product'])
+
+def ingredientsWordCloud(df):
     st.subheader("Ingredients Word Cloud")
     category = st.multiselect("Select the product category to view their ingredients list Word Cloud: ",("Cleanser","Toner","Treatment","Moisturizer","Face Mask"))
-    
+        
     for x in range(0,len(category)):
-        #category_df = df[df.Category == category[x]]
-        #category_df2 = " ".join(ing for ing in category_df.Ingredients)
-        #generateWordCloud(category_df2)
+        category_df = df[df.Category == category[x]]
+        category_df2 = " ".join(ing for ing in category_df.Ingredients)
         
         if category[x] == 'Cleanser':
             st.caption("Cleanser:")
-            st.image(Image.open('img/cleanser_wordcloud.png'),width=450)
+            generateWordCloud(category_df2)
         elif category[x] == 'Toner':
             st.caption("Toner:")
-            st.image(Image.open('img/toner_wordcloud.png'),width=450)
+            generateWordCloud(category_df2)
         elif category[x] == 'Treatment':
             st.caption("Treatment:")
-            st.image(Image.open('img/treatment_wordcloud.png'),width=450)
+            generateWordCloud(category_df2)
         elif category[x] == 'Moisturizer':
             st.caption("Moisturizer:")
-            st.image(Image.open('img/moisturizer_wordcloud.png'),width=450)
+            generateWordCloud(category_df2)
         elif category[x] == 'Face Mask':
             st.caption("Face Mask:")
-            st.image(Image.open('img/facemask_wordcloud.png'),width=450)
+            generateWordCloud(category_df2)
         
         if x == len(category)-1:
                 st.success("Above is/are the Word Cloud visualization(s) of the ingredients distribution of your selected product category(s).")
         
-
+def generateWordCloud(data):
+    stopwords = set(STOPWORDS)
+    stopwords.update(['read', 'more', 'product'])
+    wordcloud = WordCloud(stopwords=stopwords, background_color="white").generate(data)
     
+    plt.figure(figsize = (10,2))
+    plt.imshow(wordcloud, interpolation='bilinear')
+    plt.axis("off")
+    st.pyplot()
+    st.set_option('deprecation.showPyplotGlobalUse', False)
