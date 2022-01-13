@@ -9,9 +9,11 @@ Created on Tue Jan 11 16:20:02 2022
 import streamlit as st
 from PIL import Image
 import pandas as pd
+import matplotlib.pyplot as plt
 
-#from nltk.corpus import stopwords
-#from wordcloud import WordCloud, STOPWORDS
+from nltk import corpus
+from nltk.corpus import stopwords
+from wordcloud import WordCloud, STOPWORDS
 
 def app():
     cleaned_data = pd.read_csv("https://raw.githubusercontent.com/broccobroccolis/skinoclock/main/Cleaned_skindataall.csv")
