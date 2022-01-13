@@ -9,7 +9,8 @@ Created on Tue Jan 11 16:20:02 2022
 import streamlit as st
 from PIL import Image
 import pandas as pd
-import matplotlib.pyplot as plt
+import matplotlib
+from matplotlib import pyplot as plt
 
 from nltk import corpus
 from nltk.corpus import stopwords
