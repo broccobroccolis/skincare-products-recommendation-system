@@ -18,15 +18,15 @@ def app():
     
     st.write("")
     st.subheader("Dataset Information 📊  ")
-    st.write("Dataset used can be accessed via https://raw.githubusercontent.com/broccobroccolis/skinoclock/main/skindataall_1412.csv.")
+    st.write("Dataset used can be accessed at https://raw.githubusercontent.com/broccobroccolis/skinoclock/main/skindataall_1412.csv.")
     
     st.write("")
     st.subheader("Source Code 💻  ")
-    st.write("Complete source codes and dataset can be assessed at https://github.com/broccobroccolis/skinoclock.")
+    st.write("Complete source codes and dataset can be accessed at https://github.com/broccobroccolis/skinoclock.")
     
     st.write("")
     st.subheader("Documentation 📑  ")
-    st.write("Detailed documentation can be assessed via (?)")
+    st.write("Detailed documentation can be assessed at https://docs.google.com/document/d/1UfgUInUIezHQ4rC9NvQPiv8gdRvOrMvxfeDsJMCAGks/edit?usp=sharing.")
     
     st.write("")
     st.subheader("About Author ✍🏻  ")
