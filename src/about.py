@@ -36,7 +36,7 @@ def app():
         col1.image(image, width=200)
         
         col2.write("Hello there! I am Wan Woei Chyi, a 3rd year Data Science student from University of Malaya, and definitely a skincare enthusiast! ")
-        col2.write("This is the data product of my WIH3003 Data Science Project, Skin O'Clock, a skincare products recommendation system.")
+        col2.write("This is the data product of my WIH3001 Data Science Project, Skin O'Clock, a skincare products recommendation system.")
         col2.write("Hope you have fun!")
         col2.write("Feel free to connect with me on LinkedIn via https://www.linkedin.com/in/woeichyi-wan. Cheers! 🙌")
     
