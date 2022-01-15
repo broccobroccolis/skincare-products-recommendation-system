@@ -26,7 +26,7 @@ def app():
     
     st.write("")
     st.subheader("Documentation 📑  ")
-    st.write("Detailed documentation can be assessed at https://docs.google.com/document/d/1UfgUInUIezHQ4rC9NvQPiv8gdRvOrMvxfeDsJMCAGks/edit?usp=sharing.")
+    st.write("Detailed documentation can be accessed at https://docs.google.com/document/d/1UfgUInUIezHQ4rC9NvQPiv8gdRvOrMvxfeDsJMCAGks/edit?usp=sharing.")
     
     st.write("")
     st.subheader("About Author ✍🏻  ")
