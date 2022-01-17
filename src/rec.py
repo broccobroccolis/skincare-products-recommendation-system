@@ -16,13 +16,36 @@ from PIL import Image
 
 def app():
     st.subheader("""Welcome to your skincare products recommendation engine!""")
-    st.caption("Now be patient... We need a little bit of time to give you our best...")
     
     cleaned_data = pd.read_csv("https://raw.githubusercontent.com/broccobroccolis/skinoclock/main/Cleaned_skindataall.csv")
     df = cleaned_data.copy()
     
     category = st.selectbox("Select the product category you're looking for: ",("Cleanser","Toner","Treatment","Moisturizer","Face Mask"))
     
+    try : 
+        user_id_input = int(st.text_input("Please enter your user ID at Sephora: "))
+    except ValueError:
+        pass
+    
+
+    if st.button('Get recommendations'):
+        try:
+            get_recommendation(user_id_input,category)
+            st.caption("Now be patient... We need a little bit of time to give you our best...")
+            #final_recommendations = get_predictions(user_id_input,category,tmp_transpose,df)
+            #st.write(final_recommendations.head())
+    
+        except AttributeError:
+            pass
+    else:
+        pass
+    
+    st.write("")
+    popularity_based_recommendation(df)
+    
+def get_recommendation(user_id_input,category):
+    cleaned_data = pd.read_csv("https://raw.githubusercontent.com/broccobroccolis/skinoclock/main/Cleaned_skindataall.csv")
+    df = cleaned_data.copy()
     #Modelling recommenders
     data = df[['User_id', 'Product_id', 'Rating_Stars']]
     reader = Reader(line_format='user item rating', sep=',')
@@ -45,19 +68,10 @@ def app():
         all_pred[uid] = user_ratings[:n]
     tmp = pd.DataFrame.from_dict(all_pred)
     tmp_transpose = tmp.transpose()
-        
-    user_id_input = int(st.text_input("Please enter your user ID at Sephora: ", 67))
-    try:
-        final_recommendations = get_predictions(user_id_input,category,tmp_transpose,df)
-        st.write(final_recommendations.head())
     
-    except AttributeError:
-        pass
-    
-    st.write("")
-    popularity_based_recommendation(df)
-    
-    
+    final_recommendations = get_predictions(user_id_input,category,tmp_transpose,df)
+    st.write(final_recommendations.head())
+
 def get_all_predictions(predictions):
     
     # First map the predictions to each user.
