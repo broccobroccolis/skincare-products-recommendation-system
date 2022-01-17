@@ -50,7 +50,10 @@ def featuresDistribution(data):
         fig = stats.plot.bar()
         ax.set_xticklabels(ax.get_xticklabels(), rotation=360, ha='right')
 
-        st.pyplot(fig=fig.figure, figsize=30)
+        with st.container():
+            col1, col2 = st.columns([3,2])
+            col1.pyplot(fig=fig.figure, figsize=1)
+        st.set_option('deprecation.showPyplotGlobalUse', False)
         
         if x == len(features)-1:
                 st.success("Above is/are the users' distribution visualization(s) of your selected feature(s).")
@@ -90,5 +93,7 @@ def generateWordCloud(data):
     plt.figure(figsize = (10,2))
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis("off")
-    st.pyplot()
+    with st.container():
+            col1, col2 = st.columns([3,2])
+            col1.pyplot()
     st.set_option('deprecation.showPyplotGlobalUse', False)
