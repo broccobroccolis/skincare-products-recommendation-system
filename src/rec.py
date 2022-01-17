@@ -30,8 +30,8 @@ def app():
 
     if st.button('Get recommendations'):
         try:
-            get_recommendation(user_id_input,category)
             st.caption("Now be patient... We need a little bit of time to give you our best...")
+            get_recommendation(user_id_input,category)
             #final_recommendations = get_predictions(user_id_input,category,tmp_transpose,df)
             #st.write(final_recommendations.head())
     
