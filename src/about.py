@@ -31,7 +31,7 @@ def app():
     st.write("")
     st.subheader("About Author ✍🏻  ")
     with st.container():
-        col1, col2 = st.columns([1,2])
+        col1, col2 = st.columns([1,4])
         image = Image.open('img/DSC_8752.jpg')
         col1.image(image, width=200)
         
