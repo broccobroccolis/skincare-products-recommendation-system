@@ -16,7 +16,6 @@ def app():
     image = Image.open('img/skincare.jpeg')
     st.image(image)
     
-    st.sidebar.caption("Navigate through the pages to explore more!")
     st.write("")
     st.write("")
     with st.container():
