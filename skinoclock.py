@@ -32,7 +32,7 @@ MENU = {
     "Home" : homepage,
     "Recommendations" : rec,
     "Visualization" : visualization,
-    "Info" : info,
+    "Extra Info" : info,
     "About" : about,
     
 }
@@ -43,8 +43,9 @@ def main():
     menu_data = [
         {'icon': "far fa-chart-bar", 'label':"Recommendations"},#no tooltip message
         {'icon': "fas fa-desktop",'label':"Visualization"},
-        {'icon': "far fa-copy", 'label':"About"},
         {'icon': "fas fa-info-circle", 'label':"Info"}, 
+        {'icon': "far fa-copy", 'label':"About"},
+    
     ]
 
 
