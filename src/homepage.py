@@ -10,7 +10,8 @@ from PIL import Image
 
 
 def app():
-    st.header("""Skincare Products Recommendation Engine""")
+    st.header("""Skin O'Clock""")
+    st.subheader("""Skincare Products Recommendation Engine""")
     st.markdown("WIH3001 Data Science Project")
     st.markdown("Prepared by Wan Woei Chyi (17205866/1)")
     image = Image.open('img/skincare.jpeg')
