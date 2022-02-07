@@ -13,4 +13,4 @@ The web based application has been deployed with Streamlit and can be accessed p
 The detailed user manual can be accessed via https://drive.google.com/file/d/1Yf-NLtNYLzpYcKlOa748dsLsypyjFyD4/view?usp=sharing
 
 ## About me
-I am Woei Chyi, a 3rd year Computer Science (Data Science student) from University of Malaya. Feel free to connect with me via email (woeichyi_wan@outlook.com) or LinkedIn (https://www.linkedin.com/in/woeichyi-wan)!
+I am Woei Chyi, a 3rd year Computer Science (Data Science) student from University of Malaya. Feel free to connect with me via email (woeichyi_wan@outlook.com) or LinkedIn (https://www.linkedin.com/in/woeichyi-wan)!
